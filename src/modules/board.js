@@ -7,7 +7,7 @@ export default class Board {
     // TODO: make sure startCoords and endCoords are in the correct format
     const prevGrid = Board.makePrev(endCoords);
     Board.doTraversal(prevGrid, startCoords, endCoords);
-    // return getPath(prevGrid, startCoords, endCoords);
+    return Board.getPath(prevGrid, startCoords, endCoords);
   }
 
   static doTraversal(prevGrid, startCoords, endCoords) {
@@ -68,11 +68,14 @@ export default class Board {
     return true;
   }
 
-  //   static getPath(prevGrid, startCoords, endCoords) {
-  //     const path = [];
-  //     let current = startCoords;
-  //     while (current !== endCoords) {
-
-  //     }
-  //   }
+  static getPath(prevGrid, startCoords, endCoords) {
+    const path = [];
+    let current = startCoords;
+    while (current !== endCoords) {
+      path.push(current);
+      current = prevGrid[current[0]][current[1]];
+    }
+    path.push(endCoords);
+    return path;
+  }
 }

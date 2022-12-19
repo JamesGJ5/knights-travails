@@ -1,3 +1,3 @@
 import Board from './modules/board';
 
-Board.knightMoves([3, 3], [4, 3]);
+console.log(Board.knightMoves([3, 3], [4, 3]));
