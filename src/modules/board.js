@@ -14,12 +14,13 @@ export default class Board {
     while (deque.length > 0) {
       const currentCoords = deque.shift();
       const moveList = Board.getMoves(currentCoords, prev);
-      Object.keys(moveList).forEach((move) => {
+      for (let i = 0; i < moveList.length; i += 1) {
+        const move = moveList[i];
         Board.logPrevious(move, currentCoords, prev);
         if (move === knightStartCoords) {
           return;
         }
-      });
+      }
     }
   }
 
