@@ -42,11 +42,11 @@ export default class Board {
     for (let smallIncrement = -1; smallIncrement <= 1; smallIncrement += 2) {
       for (let largeIncrement = -2; largeIncrement <= 2; largeIncrement += 4) {
         // TODO: combine the below into one loop
-        const move1 = [coords[0] + smallIncrement, coords[1] + largeIncrement];
+        const move1 = [i + smallIncrement, j + largeIncrement];
         if (Board.checkMoveValidity(move1, prev)) {
           moves.push(move1);
         }
-        const move2 = [coords[0] + largeIncrement, coords[1] + smallIncrement];
+        const move2 = [i + largeIncrement, j + smallIncrement];
         if (Board.checkMoveValidity(move2, prev)) {
           moves.push(move2);
         }
