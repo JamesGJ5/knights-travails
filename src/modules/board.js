@@ -6,12 +6,19 @@ export default class Board {
   static knightMoves(startCoords, endCoords) {
     // TODO: make sure startCoords and endCoords are in the correct format
     const prev = Board.makePrev(endCoords);
-    const queue = new Deque([endCoords]);
-    while (queue.length > 0) {
-      const currentCoords = queue.shift();
+    const deque = new Deque([endCoords]);
+    Board.doTraversal(prev, deque, startCoords);
+  }
+
+  static doTraversal(prev, deque, knightStartCoords) {
+    while (deque.length > 0) {
+      const currentCoords = deque.shift();
       const moveList = Board.getMoves(currentCoords, prev);
       Object.keys(moveList).forEach((move) => {
         Board.logPrevious(move, currentCoords, prev);
+        if (move === knightStartCoords) {
+          return;
+        }
       });
     }
   }
