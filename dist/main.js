@@ -1,1 +1,1 @@
-(()=>{"use strict";class l{static prev=Array(8).fill(Array(8).fill(null))}console.log(l.prev)})();
+(()=>{"use strict";class t{static knightMoves(r,s){t.makePrev(s)}static makePrev(t){const r=[...Array(8)].map((()=>Array(8).fill(0)));return r[t[0]][t[1]]=t,r}}t.knightMoves([3,3],[4,3])})();
