@@ -6,20 +6,22 @@ export default class Board {
   static knightMoves(startCoords, endCoords) {
     // TODO: make sure startCoords and endCoords are in the correct format
     const prevGrid = Board.makePrev(endCoords);
-    const deque = new Deque([endCoords]);
-    Board.doTraversal(prevGrid, deque, startCoords);
+    Board.doTraversal(prevGrid, startCoords, endCoords);
+    // return getPath(prevGrid, startCoords, endCoords);
   }
 
-  static doTraversal(prevGrid, deque, knightStartCoords) {
+  static doTraversal(prevGrid, startCoords, endCoords) {
+    const deque = new Deque([endCoords]);
     while (deque.length > 0) {
       const currentCoords = deque.shift();
       const moveList = Board.getMoves(currentCoords, prevGrid);
       for (let i = 0; i < moveList.length; i += 1) {
         const move = moveList[i];
         Board.logPrevious(move, currentCoords, prevGrid);
-        if (move === knightStartCoords) {
+        if (move === startCoords) {
           return;
         }
+        deque.push(move);
       }
     }
   }
@@ -65,4 +67,12 @@ export default class Board {
     }
     return true;
   }
+
+  //   static getPath(prevGrid, startCoords, endCoords) {
+  //     const path = [];
+  //     let current = startCoords;
+  //     while (current !== endCoords) {
+
+  //     }
+  //   }
 }
