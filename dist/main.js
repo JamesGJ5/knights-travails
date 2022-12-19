@@ -1,0 +1,1 @@
+(()=>{"use strict";class l{static prev=Array(8).fill(Array(8).fill(null))}console.log(l.prev)})();
