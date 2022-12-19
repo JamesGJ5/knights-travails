@@ -1,6 +1,7 @@
 import Deque from '../../node_modules/collections/deque';
 
 // TODO: privatise methods that don't need to be public
+// TODO: replace prev with prevGrid for clarity
 export default class Board {
   static knightMoves(startCoords, endCoords) {
     // TODO: make sure startCoords and endCoords are in the correct format
@@ -8,14 +9,21 @@ export default class Board {
     const queue = new Deque([endCoords]);
     while (queue.length > 0) {
       const currentCoords = queue.shift();
-      const moves = Board.getMoves(currentCoords, prev);
+      const moveList = Board.getMoves(currentCoords, prev);
+      Object.keys(moveList).forEach((move) => {
+        Board.logPrevious(move, currentCoords, prev);
+      });
     }
   }
 
   static makePrev(endCoords) {
     const prev = [...Array(8)].map(() => Array(8).fill(null));
-    prev[endCoords[0]][endCoords[1]] = endCoords;
+    Board.logPrevious(endCoords, endCoords, prev);
     return prev;
+  }
+
+  static logPrevious(coords, prevCoords, prev) {
+    prev[coords[0]][coords[1]] = prevCoords;
   }
 
   static getMoves(coords, prev) {
@@ -24,11 +32,6 @@ export default class Board {
     const i = coords[0];
     const j = coords[1];
     const moves = [];
-    // for (const smallIncrement in smallIncrementList) {
-    //   for (const largeIncrement in largeIncrementList) {
-    //     const asd = 3;
-    //   }
-    // }
     for (let smallIncrement = -1; smallIncrement <= 1; smallIncrement += 2) {
       for (let largeIncrement = -2; largeIncrement <= 2; largeIncrement += 4) {
         // TODO: combine the below into one loop
