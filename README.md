@@ -1,0 +1,1 @@
+Fun object-oriented project that involves using a breadth-first traversal to find the shortest path a knight can take between two squares on a chessboard. Sadly, it lacks a frontend.
